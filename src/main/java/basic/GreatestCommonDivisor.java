@@ -1,4 +1,4 @@
-package main.java.basic;
+package basic;
 
 public class GreatestCommonDivisor {
     private static int gcdRecursive(int p, int q){
