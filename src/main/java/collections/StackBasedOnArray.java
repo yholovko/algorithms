@@ -1,65 +1,62 @@
-package collections;
+package main.java.collections;
 
 /**
- * Dynamic stack based on array
- *
+ * Dynamic stack (array-based implementation)
  */
 public class StackBasedOnArray<Item> {
     private Item[] elements;
     private int N = 0;  //size
-    
-    public StackBasedOnArray(){
-        elements = (Item[]) new Object[10];
+
+    public StackBasedOnArray() {
+        this(10);
     }
-    
-    public StackBasedOnArray(int cap){
+
+    public StackBasedOnArray(int cap) {
         elements = (Item[]) new Object[cap];
     }
-    
-    private void resize(int newCapacity){
+
+    private void resize(int newCapacity) {
         System.out.print("; Resizing array. New capacity = " + newCapacity);
-        
+
         Item[] newElements = (Item[]) new Object[newCapacity];
-        
-        for (int i = 0; i < N; i++){
-            newElements[i] = elements[i];
-        }
+
+        System.arraycopy(elements, 0, newElements, 0, N);
         elements = newElements;
     }
-    
-    public void push(Item elem){
+
+    public void push(Item elem) {
         System.out.print("Pushing: " + elem);
-        
-        if (N == elements.length){
+
+        if (N == elements.length) {
             resize(2 * elements.length);
         }
 
         System.out.println(" ..Done");
         elements[N++] = elem;
     }
-    
-    public Item pop(){
+
+    public Item pop() {
         Item item = elements[--N];
         elements[N] = null;             //for garbage collector
-        if (N > 0 && N == elements.length / 4){
+        if (N > 0 && N == elements.length / 4) {
             resize(elements.length / 2);
         }
-        
+
         return item;
-    } 
-    
-    public int size(){
+    }
+
+    public int size() {
         return N;
     }
-    
-    public boolean isEmpty(){
-        return N == 0;        
+
+    public boolean isEmpty() {
+        return N == 0;
     }
-    
-    public int capacity(){
+
+    public int capacity() {
         return elements.length;
     }
-    
+
     public static void main(String[] args) {
         StackBasedOnArray<Integer> st = new StackBasedOnArray<>(3);
         System.out.println("Size = " + st.size() + "; Capacity = " + st.capacity());
@@ -67,7 +64,7 @@ public class StackBasedOnArray<Item> {
         st.push(4);
         st.push(2);
         st.push(8);
-        
+
         System.out.println("Size = " + st.size() + "; Capacity = " + st.capacity());
 
         System.out.println("Pop = " + st.pop());
@@ -82,7 +79,7 @@ public class StackBasedOnArray<Item> {
         st.push(6);
 
         System.out.println("Size = " + st.size() + "; Capacity = " + st.capacity());
-        
+
         System.out.println("Pop = " + st.pop());
         System.out.println("Pop = " + st.pop());
         System.out.println("\nPop = " + st.pop());

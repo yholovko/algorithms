@@ -1,26 +1,29 @@
-package collections;
+package main.java.collections;
 
 import java.util.Iterator;
 
-public class StackBasedOnLinkedList<Item> implements Iterable<Item>{
-    private Node first = null;
+/**
+ * Dynamic stack (LinkedList-based implementation)
+ */
+public class StackBasedOnLinkedList<Item> implements Iterable<Item> {
+    private Node first = null; //pointer to first node
     private int N = 0; //size
 
 
-    private class Node{
+    private class Node {
         public Item element;
         public Node next;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return first == null;
     }
 
-    public int size(){
+    public int size() {
         return N;
     }
 
-    public void push(Item item){
+    public void push(Item item) {
         Node oldfirst = first;
         first = new Node();
         first.element = item;
@@ -28,7 +31,7 @@ public class StackBasedOnLinkedList<Item> implements Iterable<Item>{
         N++;
     }
 
-    public Item pop(){
+    public Item pop() {
         Item item = first.element;
         first = first.next;
         N--;
@@ -40,8 +43,9 @@ public class StackBasedOnLinkedList<Item> implements Iterable<Item>{
         return new ListIterator();
     }
 
-    private class ListIterator implements Iterator<Item>{
+    private class ListIterator implements Iterator<Item> {
         private Node current = first;
+
         @Override
         public boolean hasNext() {
             return current != null;
@@ -55,9 +59,9 @@ public class StackBasedOnLinkedList<Item> implements Iterable<Item>{
         }
 
         @Override
-        public void remove() {}
+        public void remove() {
+        }
     }
-
 
     public static void main(String[] args) {
         StackBasedOnLinkedList<Integer> stack = new StackBasedOnLinkedList<>();
@@ -68,15 +72,15 @@ public class StackBasedOnLinkedList<Item> implements Iterable<Item>{
         stack.push(1);
 
         Iterator<Integer> it = stack.iterator();
-        while (it.hasNext()){
-            System.out.print(it.next()+" ");
+        while (it.hasNext()) {
+            System.out.print(it.next() + " ");
         }
 
-        System.out.println("\nPop: "+stack.pop());
+        System.out.println("\nPop: " + stack.pop());
 
         it = stack.iterator();
-        while (it.hasNext()){
-            System.out.print(it.next()+" ");
+        while (it.hasNext()) {
+            System.out.print(it.next() + " ");
         }
     }
 }

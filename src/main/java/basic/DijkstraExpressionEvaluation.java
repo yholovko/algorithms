@@ -1,19 +1,18 @@
-package basic;
+package main.java.basic;
 
 import java.util.Stack;
 
 /**
  * Dijkstra's Two - Stack Algorithm for Expression Evaluation
- * * 
  */
 public class DijkstraExpressionEvaluation {
-    private static Stack<String> ops = new Stack<>();
-    private static Stack<Double> val = new Stack<>();
-    
+    private static Stack<String> ops = new Stack<>(); //operations
+    private static Stack<Double> val = new Stack<>(); //values
+
     public static void main(String[] args) {
         String expression = "( 1 + ( ( 2 + 3 ) * ( 4 * 5 ) ) )";
-        
-        for (String s : expression.split(" ")){
+
+        for (String s : expression.split(" ")) {
             if (s.equals("(")) continue;
             switch (s) {
                 case "+":
