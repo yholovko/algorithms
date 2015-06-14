@@ -1,4 +1,4 @@
-package main.java.collections;
+package collections;
 
 /**
  * Dynamic stack (array-based implementation)
